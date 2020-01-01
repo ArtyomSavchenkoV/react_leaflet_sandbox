@@ -57,6 +57,7 @@ const Controller = ({
     /*
     *   Set map view position
     */
+    //TODO: make changing map viewport from initial position to position by received markers.
     let center = [55, 83]; //lat, lng
     let bounds = null;
     let zoom = 12;
