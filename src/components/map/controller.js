@@ -8,8 +8,20 @@ import AntLine from './ant-line';
 const Controller = () => {
     
     //TODO: make getting markers data and remove hardcode.
-    const markersData = [];
-    const track = []
+    const markersData = [
+        {
+            markerId: 1,
+            lat: 55,
+            lng: 83,
+            noticeCount: 2
+        },
+        {
+            markerId: 2,
+            lat: 55,
+            lng: 83.1
+        }
+    ];
+    const track = [{lat: 55, lng: 83}, {lat: 55.02, lng: 83.06}, {lat: 55, lng: 83.1}];
 
     // Produce markers and markers coordinates array.
     let markersCoordinates = [];

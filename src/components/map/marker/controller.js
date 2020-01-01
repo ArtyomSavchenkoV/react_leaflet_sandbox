@@ -41,7 +41,7 @@ const Controller = ({
                 position={position}
                 popup={markerPopup}
                 highlighted={highlighted} 
-                onMouseOver={setHighlightMarker}
+                onMouseOver={()=>setHighlightMarker(markerId)}
                 onMouseOut={rmHighlightMarker}
             />
             {noticeMarker}

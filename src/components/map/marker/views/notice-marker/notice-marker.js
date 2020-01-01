@@ -15,9 +15,9 @@ const NoticeMarker = ({
     var icon = L.icon({
         iconUrl: markerIco,
         iconSize: [15, 15],
-        iconAnchor: [-5, 52],
+        iconAnchor: [-5, 40],
         popupAnchor: [22, -45],
-        tooltipAnchor:[22, -42]
+        tooltipAnchor:[22, -33]
     });
     return (
         <Marker

@@ -21,7 +21,7 @@ const Marker = ({
         iconUrl: highlighted ? highlightedMarkerIco : markerIco,
         iconSize: [20, 31],
         iconAnchor: [10, 31],
-        popupAnchor: [16, 16]
+        popupAnchor: [0, -32]
     });
 
     return (
