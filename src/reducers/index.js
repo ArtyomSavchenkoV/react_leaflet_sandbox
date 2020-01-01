@@ -1,3 +1,6 @@
+import mapElementsStateReducer from './map-elements-state-reducer';
+
+
 const initStore = {};
 
 
@@ -5,7 +8,8 @@ const reducer = (store = initStore, action) => {
     switch (action.type) {
 
         default: return {
-            ...store
+            ...store,
+            mapElementsState: mapElementsStateReducer(store.mapElementsState, action)
         };
     }
 }
