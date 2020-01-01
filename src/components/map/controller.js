@@ -28,7 +28,15 @@ const Controller = () => {
     }
 
     const antLine = <AntLine track={track} />
+
+    /*
+    *   Set map view position
+    */
+    let center = [55, 83]; //lat, lng
+    let bounds = null;
+    let zoom = 12;
     
+    //TODO: make showing ant line when map viewport bacame changed: `onViewportChanged`
     return (
         <Map 
             center={center}
@@ -38,7 +46,7 @@ const Controller = () => {
             markers={markers}
             antLine={antLine}
 
-            onViewportChanged={showAlertTrack}
+            onViewportChanged={()=>{}}
         />
     )
 };

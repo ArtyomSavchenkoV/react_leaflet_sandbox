@@ -4,6 +4,7 @@ import compose from '../../utils/compose';
 import { withLocalizationService } from '../hoc';
 
 import Spinner from '../common/spinner';
+import Map from '../map';
 
 import Layout from './views/layout';
 

@@ -23,8 +23,6 @@ const NoticeMarker = ({
         <Marker
             position={position}
             icon={icon}
-            onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}
         >
             <Tooltip permanent interactive direction="right">{noticeCount}</Tooltip>
             {popup}

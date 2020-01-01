@@ -58,8 +58,8 @@ const mapStoreToProps = ({ mapElementsState }) => {
 }
 
 const mapDispatchToProps = {
-    setHighlightAlert,
-    rmHighlightAlert
+    setHighlightMarker,
+    rmHighlightMarker
 };
 
 export default compose(

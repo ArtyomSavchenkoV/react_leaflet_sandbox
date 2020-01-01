@@ -13,7 +13,7 @@ const Controller = ({
 
     for (let val of trackData) {
         const center = [val.lat, val.lng];
-        track.push([el.lat, el.lng]);
+        track.push([val.lat, val.lng]);
         antDots.push(<AntDot key={'' + center[0] + center[1]} center={center} />);
     }
 
