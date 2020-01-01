@@ -15,9 +15,12 @@ const App = ({
 }) => {
     
     const content = <Spinner />;
+    const map = <Map />;
     
     return (
-        <Layout content={content} />
+        <Layout 
+            map={map} 
+        />
     );
 };
 

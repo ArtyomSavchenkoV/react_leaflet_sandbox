@@ -1,15 +1,15 @@
 import React from 'react';
 
-import './layout.css';
+import './layout.scss';
 
 const Layout = ({
-    content
+    map
 }) => {
 
     return (
         <div className="app">
-            <div className="content-container">
-                {content}
+            <div className="map-container">
+                {map}
             </div>
         </div>
     );
