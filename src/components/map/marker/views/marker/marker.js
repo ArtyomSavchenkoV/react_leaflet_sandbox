@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Marker: leafletMarker } from 'react-leaflet';
+import { Marker as leafletMarker } from 'react-leaflet';
 import L from 'leaflet';
 
 import './marker.css';

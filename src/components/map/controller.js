@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MapBoard from './views/map-board';
+import Map from './views/map';
 import Marker from './marker';
 import AntLine from './ant-line';
 
@@ -30,13 +30,14 @@ const Controller = () => {
     const antLine = <AntLine track={track} />
     
     return (
-        <MapBoard 
-            markersCoordinates={markersCoordinates}
+        <Map 
             center={center}
             bounds={bounds}
             zoom={zoom}
+
             markers={markers}
             antLine={antLine}
+
             onViewportChanged={showAlertTrack}
         />
     )
