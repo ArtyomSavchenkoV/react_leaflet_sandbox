@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import compose from '../../utils/compose';
+import { withApiService } from '../hoc';
+
+import {
+    fetchMarkers
+} from '../../actions';
 
 import Map from './views/map';
 import Marker from './marker';
@@ -8,15 +13,24 @@ import AntLine from './ant-line';
 
 
 const Controller = ({
-    markers: markersStore
+    markers: markersStore,
+
+    fetchMarkers,
+
+    ApiService
 }) => {
     
-    //TODO: make getting markers data and remove hardcode.
-    const track = [{lat: 55, lng: 83}, {lat: 55.02, lng: 83.06}, {lat: 55, lng: 83.1}];
-
+    /*
+    *   Markers data handler
+    */
     let markersCoordinates = [];
     let markers = [];
     switch(markersStore.dataState) {
+        case 'EMPTY': {
+            // Run requesting markers data
+            fetchMarkers(ApiService);
+            break;
+        }
         case 'READY': {
             // Produce marker components array and markers coordinates array.
             for (let key in markersStore.data) {
@@ -33,9 +47,11 @@ const Controller = ({
             }
             break;
         }
+        default: {}
     }
 
-   
+    //TODO: make getting track data and remove hardcode.
+    const track = [{lat: 55, lng: 83}, {lat: 55.02, lng: 83.06}, {lat: 55, lng: 83.1}];   
     const antLine = <AntLine track={track} />
 
     /*
@@ -67,6 +83,11 @@ const mapStoreToProps = ({ markers }) => {
     }
 };
 
+const mapDispatchToProps = {
+    fetchMarkers
+};
+
 export default compose(
-    connect(mapStoreToProps)
+    connect(mapStoreToProps, mapDispatchToProps),
+    withApiService
 )(Controller);
