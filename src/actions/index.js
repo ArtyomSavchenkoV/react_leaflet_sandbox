@@ -3,8 +3,14 @@ import {
     rmHighlightMarker
 } from './map-elements-state-actions';
 
+import {
+    fetchMarkers
+} from './markers-actions';
+
 
 export {
     setHighlightMarker,
-    rmHighlightMarker
+    rmHighlightMarker,
+
+    fetchMarkers
 };

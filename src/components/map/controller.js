@@ -1,49 +1,63 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import compose from '../../utils/compose';
+import { withApiService } from '../hoc';
+
+import {
+    fetchMarkers
+} from '../../actions';
 
 import Map from './views/map';
 import Marker from './marker';
 import AntLine from './ant-line';
 
 
-const Controller = () => {
-    
-    //TODO: make getting markers data and remove hardcode.
-    const markersData = [
-        {
-            markerId: 1,
-            lat: 55,
-            lng: 83,
-            noticeCount: 2
-        },
-        {
-            markerId: 2,
-            lat: 55,
-            lng: 83.1
-        }
-    ];
-    const track = [{lat: 55, lng: 83}, {lat: 55.02, lng: 83.06}, {lat: 55, lng: 83.1}];
+const Controller = ({
+    markers: markersStore,
 
-    // Produce markers and markers coordinates array.
+    fetchMarkers,
+
+    ApiService
+}) => {
+    
+    /*
+    *   Markers data handler
+    */
     let markersCoordinates = [];
     let markers = [];
-    for (let key in markersData) {
-        const el = markersData[key];
-        markersCoordinates.push([el.lat, el.lng]);
-        markers.push(
-            <Marker 
-                key={el.markerId} 
-                markerId={el.markerId} 
-                position={[el.lat, el.lng]}
-                noticeCount={el.noticeCount}
-            />
-        );
+    switch(markersStore.dataState) {
+        case 'EMPTY': {
+            // Run requesting markers data
+            fetchMarkers(ApiService);
+            break;
+        }
+        case 'READY': {
+            // Produce marker components array and markers coordinates array.
+            for (let key in markersStore.data) {
+                const el = markersStore.data[key];
+                markersCoordinates.push([el.lat, el.lng]);
+                markers.push(
+                    <Marker 
+                        key={el.markerId} 
+                        markerId={el.markerId} 
+                        position={[el.lat, el.lng]}
+                        noticeCount={el.noticeCount}
+                    />
+                );
+            }
+            break;
+        }
+        default: {}
     }
 
+    //TODO: make getting track data and remove hardcode.
+    const track = [{lat: 55, lng: 83}, {lat: 55.02, lng: 83.06}, {lat: 55, lng: 83.1}];   
     const antLine = <AntLine track={track} />
 
     /*
     *   Set map view position
     */
+    //TODO: make changing map viewport from initial position to position by received markers.
     let center = [55, 83]; //lat, lng
     let bounds = null;
     let zoom = 12;
@@ -64,4 +78,17 @@ const Controller = () => {
 };
 
 
-export default Controller;
+const mapStoreToProps = ({ markers }) => {
+    return {
+        markers
+    }
+};
+
+const mapDispatchToProps = {
+    fetchMarkers
+};
+
+export default compose(
+    connect(mapStoreToProps, mapDispatchToProps),
+    withApiService
+)(Controller);
