@@ -23,8 +23,9 @@ const Controller = ({
 }) => {
     const highlighted = highlightedMarker === markerId;
 
-    const markerPopup = <MarkerPopup />;
-    const noticeMarkerPopup = <NoticeMarkerPopup />;
+    //TODO: Make text for popups.
+    const markerPopup = <MarkerPopup>##Marker popup.</MarkerPopup>;
+    const noticeMarkerPopup = <NoticeMarkerPopup>##Notice marker popup.</NoticeMarkerPopup>;
 
     const noticeMarker = noticeCount > 0 ? (
             <NoticeMarker
