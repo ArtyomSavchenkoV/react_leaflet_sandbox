@@ -9,21 +9,24 @@ const Controller = () => {
     
     //TODO: make getting markers data and remove hardcode.
     const markersData = [];
+    const track = []
 
     // Produce markers and markers coordinates array.
     let markersCoordinates = [];
     let markers = [];
     for (let key in markersData) {
         const el = markersData[key];
-        markersCoordinates.push([el.lat, el.lon]);
+        markersCoordinates.push([el.lat, el.lng]);
         markers.push(
             <Marker 
                 key={el.markerId} 
                 zoneId={el.markerId} 
-                position={[el.lat, el.lon]}
+                position={[el.lat, el.lng]}
             />
         );
     }
+
+    const antLine = <AntLine track={track} />
     
     return (
         <MapBoard 
