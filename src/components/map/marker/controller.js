@@ -50,7 +50,8 @@ const Controller = ({
 }
 
 
-const mapStoreToProps = ({ highlightedMarker }) => {
+const mapStoreToProps = ({ mapElementsState }) => {
+    const { highlightedMarker } = mapElementsState;
     return {
         highlightedMarker
     }

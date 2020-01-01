@@ -20,8 +20,9 @@ const Controller = () => {
         markers.push(
             <Marker 
                 key={el.markerId} 
-                zoneId={el.markerId} 
+                markerId={el.markerId} 
                 position={[el.lat, el.lng]}
+                noticeCount={el.noticeCount}
             />
         );
     }
