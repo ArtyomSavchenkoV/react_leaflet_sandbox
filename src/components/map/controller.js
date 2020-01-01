@@ -1,44 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import compose from '../../utils/compose';
 
 import Map from './views/map';
 import Marker from './marker';
 import AntLine from './ant-line';
 
 
-const Controller = () => {
+const Controller = ({
+    markers: markersStore
+}) => {
     
     //TODO: make getting markers data and remove hardcode.
-    const markersData = [
-        {
-            markerId: 1,
-            lat: 55,
-            lng: 83,
-            noticeCount: 2
-        },
-        {
-            markerId: 2,
-            lat: 55,
-            lng: 83.1
-        }
-    ];
     const track = [{lat: 55, lng: 83}, {lat: 55.02, lng: 83.06}, {lat: 55, lng: 83.1}];
 
-    // Produce markers and markers coordinates array.
     let markersCoordinates = [];
     let markers = [];
-    for (let key in markersData) {
-        const el = markersData[key];
-        markersCoordinates.push([el.lat, el.lng]);
-        markers.push(
-            <Marker 
-                key={el.markerId} 
-                markerId={el.markerId} 
-                position={[el.lat, el.lng]}
-                noticeCount={el.noticeCount}
-            />
-        );
+    switch(markersStore.dataState) {
+        case 'READY': {
+            // Produce marker components array and markers coordinates array.
+            for (let key in markersStore.data) {
+                const el = markersStore.data[key];
+                markersCoordinates.push([el.lat, el.lng]);
+                markers.push(
+                    <Marker 
+                        key={el.markerId} 
+                        markerId={el.markerId} 
+                        position={[el.lat, el.lng]}
+                        noticeCount={el.noticeCount}
+                    />
+                );
+            }
+            break;
+        }
     }
 
+   
     const antLine = <AntLine track={track} />
 
     /*
@@ -64,4 +61,12 @@ const Controller = () => {
 };
 
 
-export default Controller;
+const mapStoreToProps = ({ markers }) => {
+    return {
+        markers
+    }
+};
+
+export default compose(
+    connect(mapStoreToProps)
+)(Controller);
